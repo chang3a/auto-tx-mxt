@@ -59,7 +59,7 @@ function saveDeadToken(token) {
 
             const remainingTokens = currentTokens.filter(t => t !== token);
             fs.writeFileSync('tokens.txt', remainingTokens.join('\n') + (remainingTokens.length > 0 ? '\n' : ''), 'utf-8');
-            console.log(`[CLEAN] Đã tự động loại bỏ token lỗi quá 3 ván khỏi tokens.txt`);
+            console.log(`[CLEAN] Đã tự động loại bỏ token lỗi ra khỏi tokens.txt`);
         }
     } catch (e) {}
 }
@@ -177,6 +177,8 @@ async function main() {
                     console.log(`[LOGGED IN] Acc ${globalIndex} đã sẵn sàng trong phiên.`);
                 } catch (err) {
                     console.log(`[WARNING] Acc ${globalIndex} không thể kết nối ban đầu.`);
+                    saveDeadToken(token); // ĐÃ THÊM: Tự động đưa vào dead_tokens và xóa khỏi tokens.txt ngay lập tức
+                    tokenErrors[token] = MAX_CONSECUTIVE_ERRORS;
                 }
             }
 
