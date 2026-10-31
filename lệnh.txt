@@ -1,0 +1,4 @@
+bước 1 , npm init -y
+bước 2 , npm install playwright
+         npx playwright install chromium
+bước 3 , node auto_playwright.js
